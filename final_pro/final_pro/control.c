@@ -33,29 +33,36 @@ bool doing_jump = false;
 int speed = 10;
 int bul_num = 0;
 
+bool initializeOnce = false;
+bool creatAllImagesOnce = false;
+
 void Initialize(void)// after wantMap()
 {
-	srand((unsigned int)time(NULL)); //为了引用随机数
-
-	InitializeBullet();
-	InitializeEnemy();
-
-	/*enemy链表的一系列初始化，最终得到一个装好数据的enemy链表*/
-	InitializeList(&list);
-	if (ListIsFull(&list))
+	if (!initializeOnce) //确保只执行一次
 	{
-		fprintf(stderr, "No memory!!!!");
-		exit(EXIT_FAILURE);
+		initializeOnce = true;
+
+		srand((unsigned int)time(NULL)); //为了引用随机数
+
+		InitializeBullet();
+		InitializeEnemy();
+
+		/*enemy链表的一系列初始化，最终得到一个装好数据的enemy链表*/
+		InitializeList(&list);
+		if (ListIsFull(&list))
+		{
+			fprintf(stderr, "No memory!!!!");
+			exit(EXIT_FAILURE);
+		}
+
+		setEnemyList();
+
+		createSprite(player.sprite, "player");
+		setSpritePosition(player.sprite, player.x, LENGTH * player.y);
+		playSpriteAnimate(player.sprite, "NEW");
+		/*以下不能实现*/
+		hideImage(COMMENT_IMAGE);
 	}
-
-	setEnemyList();
-
-	createSprite(player.sprite, "player");
-	setSpritePosition(player.sprite, player.x, LENGTH * player.y);
-	playSpriteAnimate(player.sprite, "NEW");
-	/*以下不能实现*/
-	createImage(COMMENT_IMAGE, "暂停.png");
-	hideImage(COMMENT_IMAGE);
 }
 
 void gravity(void)
@@ -176,4 +183,49 @@ bool checkLocation(void)//脚下有东西，return true;
 		return true;
 	else
 		return false;
+}
+
+void creatAllImages(void)
+{
+	if (!creatAllImagesOnce)
+	{
+		creatAllImagesOnce = true;
+
+		/*main.c 中的所有图片*/
+		createImage(6666, "一个按钮.png");//game2
+		
+		createImage(4001, "情景末成功.png");//??
+		createImage(1120, "再救一次按钮.png");
+		createImage(1121, "成功结束按钮.png");
+
+		createImage(42, "情景末happy ending.png");
+		createImage(431, "宫殿.png");
+		createImage(432, "勇士勋章.png");
+		createImage(433, "女将军.png");
+
+		createImage(51, "情景末失败.png");
+		createImage(1122, "再救一次按钮.png");
+		createImage(1123, "放弃营救.png");
+
+		createImage(52, "情景末tragic ending.png");
+		createImage(53, "国王死掉.png");
+
+		/*control.c 中的图片*/
+		createImage(COMMENT_IMAGE, "暂停.png");
+
+	}
+	hideImage(6666);
+	hideImage(4001);
+	hideImage(1120);
+	hideImage(1121);
+	hideImage(42);
+	hideImage(431);
+	hideImage(432);
+	hideImage(433);
+	hideImage(51);
+	hideImage(1122);
+	hideImage(1123);
+	hideImage(52);
+	hideImage(53);
+	hideImage(COMMENT_IMAGE);
 }

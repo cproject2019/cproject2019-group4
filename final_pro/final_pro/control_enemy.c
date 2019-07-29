@@ -25,7 +25,7 @@ void InitializeEnemy(void)
 		setSpritePosition(enemy[i].sprite, LENGTH * enemy[i].x, LENGTH * enemy[i].y);
 		playSpriteAnimate(enemy[i].sprite, "new");
 	}
-	/*
+	/* 展示用代码
 	i = 0;
 	enemy[i].sprite = Enemy(i);
 	enemy[i].number = i;
@@ -126,6 +126,13 @@ void moveEnemy(void) //mode = 1的链表里的项
 			pTemp->enemy.y = address.y;
 			setSpritePosition(pTemp->enemy.sprite, LENGTH * pTemp->enemy.x, LENGTH * pTemp->enemy.y);
 			pTemp->enemy.mode = 0;
+		}
+
+		if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
+			stop();
+		else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+		{
+			//inquire();
 		}
 	}
 }

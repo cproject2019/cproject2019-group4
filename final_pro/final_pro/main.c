@@ -23,6 +23,7 @@ void gameMain(void);
 void game1Main(void);
 void game2Main(void);
 
+Item_t it;
 enum gamecontrol control = start; //要不换一个
 bool hassuccess = false;
 bool hasfailed = false;
@@ -36,7 +37,7 @@ int main(void)
 
 void gameMain(void)
 {
-
+	creatAllImages();
 	setGameTitle("All for love");
 	setGameSize(900, 550);
 
@@ -345,6 +346,8 @@ void gameMain(void)
 
 void game1Main(void) //hard
 {
+	creatAllImages();//记得删掉
+
 	int control_game = 0;
 	int control_bullet = 0;
 	setGameTitle("All for love");
@@ -372,7 +375,12 @@ void game1Main(void) //hard
 			{
 				moveBullet();
 			}
-
+			if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
+				stop();
+			else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+			{
+				//inquire();
+			}
 			gravity();
 
 			updateEnemyImportantDate();
@@ -382,6 +390,12 @@ void game1Main(void) //hard
 		}
 	}
 
+	if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
+		stop();
+	else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+	{
+		//inquire();
+	}
 	pauseGame(10000);
 }
 
@@ -396,8 +410,6 @@ void game2Main(void) //easy
 	wantMap();
 	Initialize();
 	jump_shoot();
-
-	createImage(6666, "一个按钮.png");
 
 	while (1)
 	{
@@ -414,12 +426,26 @@ void game2Main(void) //easy
 				moveBullet();
 			}
 
+			if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
+				stop();
+			else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+			{
+				//inquire();
+			}
+
 			gravity();
 
 			updateEnemyImportantDate();
 
 			check_intersect();
 			check_win();
+		}
+		
+		if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
+			stop();
+		else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+		{
+			//inquire();
 		}
 	}
 
@@ -446,13 +472,14 @@ void succeed(void)
 	EmptyTheList(&list);
 	clearAllPicture();
 
-	createImage(4001, "情景末成功.png");//??
 	setImagePosition(4001, 0, 0);
+	showImage(4001);
 	////////////////////////////
-	createImage(1120, "再救一次按钮.png");
 	setImagePosition(1120, 248, 255);
-	createImage(1121, "成功结束按钮.png");
 	setImagePosition(1121, 248, 70);
+	showImage(1120);
+	showImage(1121);
+
 
 	while (1)
 	{
@@ -461,7 +488,7 @@ void succeed(void)
 		{
 			int mouseX = getMousePositionX();
 			int mouseY = getMousePositionY();
-			/*if (mouseX > getImageX(1120) && mouseX < getImageX(1120) + getImageWidth(1120) && mouseY>getImageY(1120) && mouseY < getImageY(1120) + getImageHeight(1120))
+			if (mouseX > getImageX(1120) && mouseX < getImageX(1120) + getImageWidth(1120) && mouseY>getImageY(1120) && mouseY < getImageY(1120) + getImageHeight(1120))
 			{
 				hideImage(1120);
 				hideImage(1121);
@@ -469,23 +496,22 @@ void succeed(void)
 				restartGame();
 				break;
 			}
-			else */
-			if (mouseX > getImageX(1121) && mouseX < getImageX(1121) + getImageWidth(1121) && mouseY>getImageY(1121) && mouseY < getImageY(1121) + getImageHeight(1121))
+			else if (mouseX > getImageX(1121) && mouseX < getImageX(1121) + getImageWidth(1121) && mouseY>getImageY(1121) && mouseY < getImageY(1121) + getImageHeight(1121))
 			{
 				hideImage(1120);
 				hideImage(1121);
 				hideImage(4001);
 
-				createImage(42, "情景末happy ending.png");
 				setImagePosition(42, 0, 0);
 
 				pauseGame(1000);
 				hideImage(42);
-				createImage(431, "宫殿.png");
+
+				showImage(431);
+				showImage(432);
+				showImage(433);
 				setImagePosition(431, 0, 0);
-				createImage(432, "勇士勋章.png");
 				setImagePosition(432, 500, 135);
-				createImage(433, "女将军.png");
 				setImagePosition(433, 200, 50);
 
 				pauseGame(2000);
@@ -493,9 +519,10 @@ void succeed(void)
 				hideImage(432);
 				hideImage(433);
 
+				pauseGame(5000);
 				exit(0);
 
-				//break;
+				break;
 			}
 			else {}
 		}
@@ -511,14 +538,12 @@ void failed(void)
 	EmptyTheList(&list);
 	clearAllPicture();
 
-	createImage(51, "情景末失败.png");
 	setImagePosition(51, 0, 0);
-
+	showImage(51);
 	////////////////////////////
-	createImage(1122, "再救一次按钮.png");
 	setImagePosition(1122, 248, 205);
-	createImage(1123, "放弃营救.png");
-	setImagePosition(1123, 248, 50);
+	showImage(1122);
+	setImagePosition(1123, 248, 50); showImage(1123);
 
 	while (1)
 	{
@@ -527,7 +552,7 @@ void failed(void)
 		{
 			int mouseX = getMousePositionX();
 			int mouseY = getMousePositionY();
-			/*if (mouseX > getImageX(1122) && mouseX < getImageX(1122) + getImageWidth(1122) && mouseY>getImageY(1122) && mouseY < getImageY(1122) + getImageHeight(1122))
+			if (mouseX > getImageX(1122) && mouseX < getImageX(1122) + getImageWidth(1122) && mouseY>getImageY(1122) && mouseY < getImageY(1122) + getImageHeight(1122))
 			{
 				hideImage(1122);
 				hideImage(1123);
@@ -535,26 +560,25 @@ void failed(void)
 				restartGame();
 				break;
 			}
-			else */
-			if (mouseX > getImageX(1123) && mouseX < getImageX(1123) + getImageWidth(1123) && mouseY>getImageY(1123) && mouseY < getImageY(1123) + getImageHeight(1123))
+			else if (mouseX > getImageX(1123) && mouseX < getImageX(1123) + getImageWidth(1123) && mouseY>getImageY(1123) && mouseY < getImageY(1123) + getImageHeight(1123))
 			{
 				hideImage(1122);
 				hideImage(1123);
 				hideImage(51);
 
 				pauseGame(10);
-				createImage(52, "情景末tragic ending.png");
+				showImage(52);
 				setImagePosition(52, 0, 0);
 				
 				pauseGame(2000);
 				
 				hideImage(52);
-				createImage(53, "国王死掉.png");
+				showImage(53);
 				setImagePosition(53, 0, 0);
 
-				pauseGame(2000);
+				pauseGame(5000);
 				exit(0);
-				//break;
+				break;
 			}
 		}
 		else {}
@@ -601,6 +625,7 @@ void clearAllPicture(void)
 void game2(void)
 {
 	setImagePosition(6666,400,0);
+	showImage(6666);
 
 	if (isMouseLeftButtonDown())
 	{
@@ -643,15 +668,15 @@ void cheat(void)
 	succeed();
 }
 
-/*以下为不完善的功能*/
-/*
-void restartGame(void)// NEED REWRITE
+/*以下为新完善的功能*/
+
+void restartGame(void)// NEED 
 {
 	int control_game = 0;
 	int control_bullet = 0;
 
 	resetGame();
-	jump_shoot();
+	
 
 	while (1)
 	{
@@ -663,12 +688,16 @@ void restartGame(void)// NEED REWRITE
 			}
 			gravity();
 
-			if (((int)(player.x / LENGTH) == item[1].x && player.y == item[1].y))
+			if (((int)(player.x / LENGTH) == it.x && player.y == it.y))
 			{
 				break;
 			}
 		}
 	}
+	pauseGame(200);
+	hideSprite(player.sprite);
+	hideSprite(it.sprite);
+
 	createImage(46662, "情景末happy ending.png");
 	setImagePosition(46662, 0, 0);
 
@@ -677,11 +706,20 @@ void restartGame(void)// NEED REWRITE
 
 void resetGame(void)
 {
+	getCanvas();
+
 	player.x = PLAYER_START_X;
 	player.y = PLAYER_START_Y;
 
-	setSpritePosition(player.sprite,player.x,player.y);
-	setSpritePosition(item[1].sprite,item[1].x,item[1].y);
+	setSpritePosition(player.sprite, player.x, player.y);
+	showSprite(player.sprite);
+	playSpriteAnimate(player.sprite, "new");
 
-	getCanvas();
-}*/
+	it.sprite = BOX * 3 + 1;
+	it.x = 15;
+	it.y = 8;
+
+	createSprite(it.sprite, "box");
+	setSpritePosition(it.sprite, LENGTH * it.x, LENGTH * it.y);
+	playSpriteAnimate(it.sprite, "new");
+}

@@ -16,7 +16,7 @@
 #define WIDTH 18 //x方向图片数量
 #define HIGH 11 //y方向图片数量
 #define LENGTH 50 //正方形图片的边长
-#define COMMENT_IMAGE 12345 //这张图片记得要跟地图一样大
+#define COMMENT_IMAGE 9876543 //这张图片记得要跟地图一样大
 
 /*地图数组编码*/
 #define WALL 5 //边界
@@ -179,5 +179,8 @@ void stop(void);
 void playerMove(int direction);
 void Xmove(int direction);
 void Ymove(void * p);
+
+//修改
+void creatAllImages(void);
 
 #endif // !CONTROL_H_

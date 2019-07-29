@@ -7,6 +7,7 @@
 
 FILE *fCanvas;
 int canvas[HIGH][WIDTH];
+int createCanvasImageOnce = false;
 
 void loadCanvas(void)
 {
@@ -40,9 +41,7 @@ void loadCanvas(void)
 			break;
 		/*if (y = 10 && x = 18) break;*/
 	}
-
 	fclose(fCanvas);
-
 }
 
 void getCanvas(void)
@@ -76,11 +75,13 @@ void drawCanvas(int input, int y, int x)
 	switch (input)
 	{
 	case WALL:
+		showImage((I_WALL + x + y * 50));
 		setImagePosition((I_WALL + x + y * 50), LENGTH * x, LENGTH * y);//所有的HIGH - y均有问题
 		break;
 	case AIR:
 		break;
 	case FLOOR:
+		showImage((I_FLOOR + x + y * 50));
 		setImagePosition((I_FLOOR + x + y * 50), LENGTH * x, LENGTH * y);
 		break;
 	default:
@@ -118,18 +119,23 @@ void InitializeItem(void)
 
 void createCanvasImage(void)
 {
-	int i, j;
-
-	for (j = 0; j < HIGH; j++)
+	if (!createCanvasImageOnce)
 	{
-		for (i = 0; i < WIDTH; i++)
+		createCanvasImageOnce = true;
+
+		int i, j;
+
+		for (j = 0; j < HIGH; j++)
 		{
-			if (canvas[j][i] == WALL)
-				createImage((I_WALL + i + j * 50), "wall.png");
-			else if (canvas[j][i] == FLOOR)
-				createImage((I_FLOOR + i + j * 50), "floor.png");
-			else if (canvas[j][i] == AIR) {}
-			else {}
+			for (i = 0; i < WIDTH; i++)
+			{
+				if (canvas[j][i] == WALL)
+					createImage((I_WALL + i + j * 50), "wall.png");
+				else if (canvas[j][i] == FLOOR)
+					createImage((I_FLOOR + i + j * 50), "floor.png");
+				else if (canvas[j][i] == AIR) {}
+				else {}
+			}
 		}
 	}
 }

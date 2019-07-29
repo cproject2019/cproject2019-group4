@@ -73,7 +73,11 @@ int keyboard(void)
 	}
 	else if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
 		stop();
-
+	else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+	{
+		//inquire();
+	}
+	
 	return re;
 }
 

@@ -1,2 +1,11 @@
-﻿  control.c
-  final_pro.vcxproj -> E:\C语言程序_AllForLove\final_pro\Debug\final_pro.exe
+﻿  main.c
+e:\cproject2019-group4\final_pro\final_pro\main.c(54): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(59): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(64): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(69): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(75): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(81): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(87): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(355): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(408): warning C4305: “函数”: 从“double”到“float”截断
+  final_pro.vcxproj -> E:\cproject2019-group4\final_pro\Debug\final_pro.exe
