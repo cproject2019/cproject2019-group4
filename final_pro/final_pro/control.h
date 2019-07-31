@@ -10,13 +10,14 @@
 #include "list.h"
 #include "Apath.h"
 
-#define SPEED 567
+#define SPEED 233
 
 /*图片与地图参数*/
 #define WIDTH 18 //x方向图片数量
 #define HIGH 11 //y方向图片数量
 #define LENGTH 50 //正方形图片的边长
-#define COMMENT_IMAGE 9876543 //这张图片记得要跟地图一样大
+#define COMMENT_IMAGE 888888888888 //这张图片记得要跟地图一样大
+#define INQUIRE_IMAGE 888888888899
 
 /*地图数组编码*/
 #define WALL 5 //边界
@@ -67,6 +68,9 @@
 #define RIGHT 4 //右
 #define JUMP 5 //跳跃
 
+
+#define TIME_TXT_NUM 100
+#define INQ 600
 /****************************全局的结构体*************************/
 
 /*玩家*/
@@ -95,6 +99,12 @@ typedef struct bullet {
 	bool new;
 }Bullet_t;
 
+typedef struct information
+{
+	double game_time;
+	char date[30];
+}Info_t;
+
 enum gamecontrol { start, modeOne, modeTwo };
 
 /***************声明全局变量，能够在所有的文件使用***************/
@@ -107,20 +117,26 @@ extern bool doing_jump;
 extern int bul_num;
 extern int speed;
 
+extern 	clock_t gameStart, gameEnd, Ntime;
+extern clock_t stopTime, stopStart, stopEnd;
+
+
 extern FILE *fCanvas;
 extern int canvas[HIGH][WIDTH];
+extern FILE * fGrade;
 
 extern Player_t player;
 extern Item_t item[NUM];
 extern Enemy_t enemy[ENEMY_MAX];
 extern Bullet_t bullet[BULLET_MAX_NUM];
 extern List_t list;
-
+extern Info_t thisGrade;
+extern Info_t bestGrade;
 
 /***********************声明函数原型****************************/
 /*MAIN.C*/
 void chooseGame(void);
-void succeed(void);
+void succeed(int which);
 void failed(void);
 void clearAllPicture(void);
 void game2(void);
@@ -132,7 +148,7 @@ void resetGame(void);
 void Initialize(void);
 bool check_intersect(void);
 void gravity(void);
-void check_win(void);
+void check_win(int which);
 void update_game(void);
 bool check_x_location(int direction);
 bool check_y_location_up(int input);
@@ -183,4 +199,9 @@ void Ymove(void * p);
 //修改
 void creatAllImages(void);
 
+void updateTime(void);
+void record(void);
+void inquire(void);
+void updateBestGrade(void);
+void readGradeDate(void);
 #endif // !CONTROL_H_

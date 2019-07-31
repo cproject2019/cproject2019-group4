@@ -34,6 +34,10 @@ void wantsJump(int key) //跳跃的函数， 如果按下小键盘↑键，就执行一次跳跃。 s me
 
 void stop(void)
 {
+	stopStart = clock();
+	hideText(TIME_TXT_NUM);
+	hideText(TIME_TXT_NUM + 1);
+
 	showImage(COMMENT_IMAGE);
 	setImagePosition(COMMENT_IMAGE, 0, 0);
 
@@ -50,6 +54,11 @@ void stop(void)
 			exit(0);
 		}
 	}
+
+	showText(TIME_TXT_NUM);
+	showText(TIME_TXT_NUM + 1);
+	stopEnd = clock();
+	stopTime = stopTime + stopEnd - stopStart;
 }
 
 int keyboard(void)
@@ -73,9 +82,9 @@ int keyboard(void)
 	}
 	else if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
 		stop();
-	else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+	else if (GetAsyncKeyState(80) & 0x8000)  //P 键查询当前排名
 	{
-		//inquire();
+		inquire();
 	}
 	
 	return re;

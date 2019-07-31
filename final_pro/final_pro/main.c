@@ -30,7 +30,7 @@ bool hasfailed = false;
 
 int main(void)
 {
-	rpInit(game1Main);
+	rpInit(gameMain);
 	
 	return 0;
 }
@@ -93,16 +93,16 @@ void gameMain(void)
 	setTextColor(05, 1, 0, 1);
 	showText(05);
 
-	createText(50, "Press any key to start the game");
-	setTextPosition(50, 300, 25);
-	setTextColor(50, 0, 0, 0);
-	setTextFontSize(50, 25);
+	createText(49, "Press any key to start the game");
+	setTextPosition(49, 300, 25);
+	setTextColor(49, 0, 0, 0);
+	setTextFontSize(49, 25);
 
 	while (1)
 	{
 		if (getPressedKeyCode())
 		{
-			hideText(50);
+			hideText(49);
 			break;
 		}
 
@@ -360,6 +360,7 @@ void game1Main(void) //hard
 
 	while (1)
 	{
+		
 		if (hasfailed || hassuccess)
 		{
 			break;
@@ -367,6 +368,7 @@ void game1Main(void) //hard
 
 		if (control_game++ % SPEED ==0)
 		{
+			updateTime();
 			if (speed++ % TIME == 0)
 			{
 				playerMove(keyboard());  //获取键盘输入以左右移动，暂停，退出游戏
@@ -377,24 +379,24 @@ void game1Main(void) //hard
 			}
 			if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
 				stop();
-			else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+			else if (GetAsyncKeyState(80) & 0x8000)  //P 键查询当前排名
 			{
-				//inquire();
+				inquire();
 			}
 			gravity();
 
 			updateEnemyImportantDate();
 
 			check_intersect();
-			check_win();
+			check_win(1);
 		}
 	}
 
 	if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
 		stop();
-	else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+	else if (GetAsyncKeyState(80) & 0x8000)  //P 键查询当前排名
 	{
-		//inquire();
+		inquire();
 	}
 	pauseGame(10000);
 }
@@ -413,6 +415,7 @@ void game2Main(void) //easy
 
 	while (1)
 	{
+		updateTime();
 		game2();
 
 		if (control_game++ % 300 == 0)
@@ -428,9 +431,9 @@ void game2Main(void) //easy
 
 			if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
 				stop();
-			else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+			else if (GetAsyncKeyState(80) & 0x8000)  //P 键查询当前排名
 			{
-				//inquire();
+				inquire();
 			}
 
 			gravity();
@@ -438,14 +441,14 @@ void game2Main(void) //easy
 			updateEnemyImportantDate();
 
 			check_intersect();
-			check_win();
+			check_win(2);
 		}
 		
 		if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
 			stop();
-		else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+		else if (GetAsyncKeyState(80) & 0x8000)  //P 键查询当前排名
 		{
-			//inquire();
+			inquire();
 		}
 	}
 
@@ -466,11 +469,17 @@ void chooseGame(void)
 		exit(EXIT_FAILURE);
 }
 
-void succeed(void)
+void succeed(int which)
 {
 	hassuccess = true;
+	gameEnd = clock();
 	EmptyTheList(&list);
 	clearAllPicture();
+
+	if (which == 1)
+	{
+		record();
+	}
 
 	setImagePosition(4001, 0, 0);
 	showImage(4001);
@@ -479,7 +488,6 @@ void succeed(void)
 	setImagePosition(1121, 248, 70);
 	showImage(1120);
 	showImage(1121);
-
 
 	while (1)
 	{
@@ -620,6 +628,8 @@ void clearAllPicture(void)
 	}
 
 	hideSprite(player.sprite);
+	hideText(TIME_TXT_NUM);
+	hideText(TIME_TXT_NUM + 1);
 }
 
 void game2(void)
@@ -665,7 +675,7 @@ void cheat(void)
 		}
 	}
 
-	succeed();
+	succeed(0);
 }
 
 /*以下为新完善的功能*/

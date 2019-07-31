@@ -1,4 +1,38 @@
-﻿  main.c
+﻿  Apath.c
+  control.c
+e:\cproject2019-group4\final_pro\final_pro\control.c(74): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control.c(75): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control.c(232): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control.c(235): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control.c(254): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control.c(255): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control.c(272): warning C4996: 'gcvt': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _gcvt. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdlib.h(1316): note: 参见“gcvt”的声明
+e:\cproject2019-group4\final_pro\final_pro\control.c(285): warning C4996: 'gcvt': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _gcvt. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdlib.h(1316): note: 参见“gcvt”的声明
+e:\cproject2019-group4\final_pro\final_pro\control.c(289): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 参见“strcpy”的声明
+e:\cproject2019-group4\final_pro\final_pro\control.c(302): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\time.h(476): note: 参见“ctime”的声明
+e:\cproject2019-group4\final_pro\final_pro\control.c(307): warning C4996: 'gcvt': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _gcvt. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdlib.h(1316): note: 参见“gcvt”的声明
+e:\cproject2019-group4\final_pro\final_pro\control.c(332): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+e:\cproject2019-group4\final_pro\final_pro\control.c(338): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+e:\cproject2019-group4\final_pro\final_pro\control.c(347): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+  control_bullet.c
+  control_enemy.c
+  control_map.c
+e:\cproject2019-group4\final_pro\final_pro\control_map.c(17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+  control_player.c
+e:\cproject2019-group4\final_pro\final_pro\control_player.c(41): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control_player.c(42): warning C4305: “函数”: 从“__int64”到“int”截断
+e:\cproject2019-group4\final_pro\final_pro\control_player.c(48): warning C4305: “函数”: 从“__int64”到“int”截断
+  list.c
+  main.c
 e:\cproject2019-group4\final_pro\final_pro\main.c(54): warning C4305: “函数”: 从“double”到“float”截断
 e:\cproject2019-group4\final_pro\final_pro\main.c(59): warning C4305: “函数”: 从“double”到“float”截断
 e:\cproject2019-group4\final_pro\final_pro\main.c(64): warning C4305: “函数”: 从“double”到“float”截断
@@ -7,5 +41,6 @@ e:\cproject2019-group4\final_pro\final_pro\main.c(75): warning C4305: “函数�
 e:\cproject2019-group4\final_pro\final_pro\main.c(81): warning C4305: “函数”: 从“double”到“float”截断
 e:\cproject2019-group4\final_pro\final_pro\main.c(87): warning C4305: “函数”: 从“double”到“float”截断
 e:\cproject2019-group4\final_pro\final_pro\main.c(355): warning C4305: “函数”: 从“double”到“float”截断
-e:\cproject2019-group4\final_pro\final_pro\main.c(408): warning C4305: “函数”: 从“double”到“float”截断
+e:\cproject2019-group4\final_pro\final_pro\main.c(410): warning C4305: “函数”: 从“double”到“float”截断
+  正在生成代码...
   final_pro.vcxproj -> E:\cproject2019-group4\final_pro\Debug\final_pro.exe

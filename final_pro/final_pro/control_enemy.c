@@ -128,11 +128,11 @@ void moveEnemy(void) //mode = 1的链表里的项
 			pTemp->enemy.mode = 0;
 		}
 
-		if (GetAsyncKeyState(0xd) & 0x8000)  //回车键暂停
+		if (GetAsyncKeyState(0xd) & 0x8000)  //回车键
 			stop();
-		else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键查询当前排名
+		else if (GetAsyncKeyState(80) & 0x8000)  //P 键
 		{
-			//inquire();
+			inquire();
 		}
 	}
 }
@@ -148,6 +148,13 @@ void updateEnemyImportantDate(void)
 	if ((rand() % (500 - 3 + 1) + 3) == 100) //随机3-500之间的数字，是100的概率
 	{
 		Traverse(&list, restore);
+	}
+
+	if (GetAsyncKeyState(0xd) & 0x8000)  //回车键
+		stop();
+	else if (GetAsyncKeyState(0xd) & 0x8000)  //P 键
+	{
+		//inquire();
 	}
 
 	while ((sprite_num = FindOldEnemy(&list)))
@@ -167,16 +174,42 @@ void updateEnemyImportantDate(void)
 			fprintf(stderr, "can't delet enemy");
 			exit(EXIT_FAILURE);
 		}
+
+		if (GetAsyncKeyState(0xd) & 0x8000)  //回车键
+			stop();
+		else if (GetAsyncKeyState(80) & 0x8000)  //P 键
+		{
+			inquire();
+		}
 	}
 	if (countTime++ % TIME * TIME == 0)
 	{
 		if ((rand() % (55555555 - 3 + 1) + 3) == 100)
 		{
 			seletEnemy();
+			if (GetAsyncKeyState(0xd) & 0x8000)  //回车键
+				stop();
+			else if (GetAsyncKeyState(80) & 0x8000)  //P 键
+			{
+				inquire();
+			}
 		}
 		if ((rand() % (999999 - 3 + 1) + 3) == 443)
 		{
 			moveEnemy();
+			if (GetAsyncKeyState(0xd) & 0x8000)  //回车键
+				stop();
+			else if (GetAsyncKeyState(80) & 0x8000)  //P 键
+			{
+				inquire();
+			}
+		}
+
+		if (GetAsyncKeyState(0xd) & 0x8000)  //回车键
+			stop();
+		else if (GetAsyncKeyState(80) & 0x8000)  //P 键
+		{
+			inquire();
 		}
 	}
 

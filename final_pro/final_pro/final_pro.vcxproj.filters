@@ -55,5 +55,8 @@
     <Text Include="map.txt">
       <Filter>资源文件</Filter>
     </Text>
+    <Text Include="grade.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>
